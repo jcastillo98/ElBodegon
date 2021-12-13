@@ -1,0 +1,171 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor httpContextAccessor
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+
+<!DOCTYPE html>
+<html lang="en" style="background-color:black;">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ElBodegon</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="icon" type="image/x-icon" href="~/images/iCONO.png" />
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700|Love+Ya+Like+A+Sister|Montserrat:100,200,300,400,500,600,700,800,900|Open+Sans:300,300i,400,400i,600,700,700i,800|Raleway:100,200,300,400,500,600,700,800,900|Roboto:100,100i,300,300i,400,400i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext' type='text/css' media='all' />
+    <link rel='stylesheet' href='~/css/public.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='~/css/font-awesome.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='~/css/fontello/css/fontello.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='~/css/style.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='~/css/shortcodes.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='~/css/core.animation.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='~/js/vendor/bp/bbpress-style.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='~/css/skin.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='~/css/custom-style.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='~/css/responsive.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='~/css/custom.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='~/js/vendor/comp/comp.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='~/css/core.messages.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='~/css/flipclock.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='~/js/vendor/swiper/idangerous.swiper.min.css' type='text/css' media='all' />
+    <link rel='stylesheet' href='~/css/notie.css' type='text/css' media='all' />
+</head>
+
+
+<body class="home-page home page body_style_fullwide body_filled article_style_stretch top_panel_style_dark top_panel_opacity_solid top_panel_over sidebar_hide responsive_menu vc_responsive no-js">
+    <div class="body_wrap">
+        <div class="page_wrap">
+            <header class="top_panel_wrap">
+                <div class="menu_user_wrap" style="background-color:#e3bd0c;border-style:solid;">
+                    <div class="logo" style="background-color: #e3bd0c;">
+                        <a href="index" style="border-bottom-style:solid; border-color:black">
+                            <img src="images/Logo3.png" class="logo_main" alt="" content="center" style="max-width:80%;height:100%;">
+                        </a>
+                    </div>
+                    <div class="menu_user_area menu_user_right menu_user_nav_area m_top">
+                        <ul id="menu_user" class="menu_user_nav">
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+                                </li>
+                                <li class="nav-item">
+                                    <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                                        <button type="submit" class="nav-link btn btn-link text-white">Logout</button>
+                                    </form>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Registarse</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Ingresar</a>
+                                </li>
+                            }
+                        </ul>
+
+                        <div class="menu_button show_menu"> Menu</div>
+                    </div>
+                </div>
+            </header>
+            <div>
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+
+            <aside class="menu_main_wrap">
+                <nav role="navigation" class="menu_main_nav_area" style="background-color:#000000">
+                    <ul id="menu_main" class="menu_main_nav">
+                        <li class="icon-3 menu-item current-menu-ancestor current-menu-parent">
+                            <a href="Index">Inicio</a>
+                        </li>
+
+                        <li class="icon-5 menu-item">
+                            <a>Acerca de</a>
+                            <ul class="sub-menu">
+                                <li class="menu-item"><a href="ceo">Presidente del comité</a></li>
+                                <li class="menu-item"><a href="team">Departamentos</a></li>
+                            </ul>
+                        </li>
+                        <li class="icon-17 menu-item">
+                            <a>Educación</a>
+                            <ul class="sub-menu">
+                                <li class="menu-item"><a href="~/tutores">Buscar tutores</a></li>
+
+                                <li class="menu-item"><a href="~/tutores/listar">Mantenimiento tutores</a></li>
+
+
+                                <li class="menu-item"><a href="~/cursos">Buscar cursos</a></li>
+
+                                <li class="menu-item"><a href="~/cursos/listar">Mantenimiento cursos</a></li>
+                            </ul>
+                        </li>
+                        <li class="icon-21 menu-item">
+                            <a>Bolsa de empleo</a>
+                            <ul class="sub-menu">
+                                <li class="menu-item"><a href="~/BolsaEmpleo">Bolsa de Empleo</a></li>
+                            </ul>
+                        </li>
+                        <li class="icon-2 menu-item-has-children">
+                            <a>Proyectos del comité</a>
+                            <ul class="sub-menu">
+                                <li class="menu-item"><a href="~/Actividades">Actividad</a></li>
+                                <li class="menu-item"><a href="groups">Grupos</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="icon-22 menu-item">
+                            <a href="~/Deportes">Deportes</a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <a href="#" class="scroll_to_top icon-angle-up-1" title="Scroll to top"></a>
+        </div>
+    </div>
+
+    <div class="custom_html_section"></div>
+
+    <script type='text/javascript' src='~/js/vendor/jquery/jquery.js'></script>
+    <script type='text/javascript' src='~/js/vendor/jquery/jquery-migrate.min.js'></script>
+    <script type='text/javascript' src='~/js/custom/custom.js'></script>
+    <script type='text/javascript' src='~/js/custom/date.js'></script>
+    <script type='text/javascript' src='~/js/vendor/jquery/jquery.my_add_function.js'></script>
+    <script type='text/javascript' src='http://use.fontawesome.com/fcc8474e79.js'></script>
+    <script type='text/javascript' src='~/js/custom/excanvas.js'></script>
+    <script type='text/javascript' src='~/js/vendor/booked/datepicker.min.js'></script>
+    <script type='text/javascript' src='~/js/vendor/bp/foundation.min.js'></script>
+    <script type='text/javascript' src='~/js/custom/cptfunctions.js'></script>
+    <script type='text/javascript' src='~/js/custom/jquery.nestable.js'></script>
+    <script type='text/javascript' src='~/js/custom/cptinnerfun.js'></script>
+    <script type='text/javascript' src='~/js/vendor/chart/chartjs_new.js'></script>
+    <script type='text/javascript' src='~/js/custom/legend.js'></script>
+    <script type='text/javascript' src='~/js/custom/poll.js'></script>
+    <script type='text/javascript' src='~/js/custom/poll-init.js'></script>
+    <script type='text/javascript' src='~/js/custom/responsive.init.js'></script>
+    <script type='text/javascript' src='~/js/custom/core.utils.js'></script>
+    <script type='text/javascript' src='~/js/custom/core.init.js'></script>
+    <script type='text/javascript' src='~/js/custom/embed.min.js'></script>
+    <script type='text/javascript' src='~/js/custom/core.messages.js'></script>
+    <script type='text/javascript' src='~/js/custom/shortcodes.js'></script>
+    <script type='text/javascript' src='~/js/vendor/comp/comp_front.min.js'></script>
+    <script type='text/javascript' src='~/js/vendor/grid.js'></script>
+    <script type='text/javascript' src='~/js/vendor/flipclock.js'></script>
+    <script type='text/javascript' src='~/js/vendor/jquery.flatshadow.js'></script>
+    <script type='text/javascript' src='~/js/vendor/isotope/isotope.pkgd.min.js'></script>
+    <script type='text/javascript' src='~/js/vendor/swiper/idangerous.swiper-2.7.min.js'></script>
+    <script type='text/javascript' src='~/js/vendor/swiper/idangerous.swiper.scrollbar-2.4.min.js'></script>
+    <script type='text/javascript' src='~/js/vendor/chart/chart.min.js'></script>
+    <script type='text/javascript' src='~/js/vendor/chart/Graph.js'></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

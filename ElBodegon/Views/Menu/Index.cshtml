@@ -1,0 +1,38 @@
+﻿@model IEnumerable<ElBodegon.Models.MenuViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<h1>Productos</h1>
+
+<p>
+    <a asp-action="Create">Agregar</a>
+</p>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-3">
+            <div class="card text-center" style="width:30rem;">
+                <img src="@Html.DisplayFor(modelItem => item.Imagen)" class="card-img-top">
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.NombreP)</h5>
+                    <p class="card-text"> ₡ @Html.DisplayFor(modelItem => item.Precio)</p>
+                    <h5><span class="badge badge-pill badge-warning">@Html.DisplayFor(modelItem => item.Tipo)</span></h5>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

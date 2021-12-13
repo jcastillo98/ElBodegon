@@ -1,0 +1,57 @@
+﻿@model ElBodegon.Models.MenuViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>MenuViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="NombreP" class="control-label"></label>
+                <input asp-for="NombreP" class="form-control" />
+                <span asp-validation-for="NombreP" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Precio" class="control-label"></label>
+                <input asp-for="Precio" class="form-control" />
+                <span asp-validation-for="Precio" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <select asp-for="Tipo" class="form-select" aria-label=".form-select-lg example">
+                    <option selected>Escoja una opcion</option>
+                    <option value="Alitas">Alitas</option>
+                    <option value="Hamburguesas">Hamburguesas</option>
+                    <option value="Bebidas">Bebidas</option>
+                    <option value="Papas">Papas</option>
+                    <option value="Papas">Quesadillas</option>
+                    <option value="Papas">Combos</option>
+                    <span asp-validation-for="Tipo" class="text-danger"></span>
+                </select>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Imagen" class="control-label"> Ruta de imagen "images/menu/####.tipo"</label>
+                <input asp-for="Imagen" class="form-control" />
+                <span asp-validation-for="Imagen" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
