@@ -50,7 +50,7 @@
                             @if (SignInManager.IsSignedIn(User))
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+                                    <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hola @User.Identity.Name!</a>
                                 </li>
                                 <li class="nav-item">
                                     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -82,47 +82,24 @@
             <aside class="menu_main_wrap">
                 <nav role="navigation" class="menu_main_nav_area" style="background-color:#000000">
                     <ul id="menu_main" class="menu_main_nav">
-                        <li class="icon-3 menu-item current-menu-ancestor current-menu-parent">
-                            <a href="Index">Inicio</a>
+                        <li class="icon-5 menu-item current-menu-ancestor current-menu-parent">
+                            <a href="~/Menu">Inicio</a>
                         </li>
 
                         <li class="icon-5 menu-item">
-                            <a>Acerca de</a>
+                            <a>Informacion</a>
                             <ul class="sub-menu">
-                                <li class="menu-item"><a href="ceo">Presidente del comité</a></li>
-                                <li class="menu-item"><a href="team">Departamentos</a></li>
+                                <li class="menu-item"><a href="http://api.whatsapp.com/send?phone=50672626452">Contacto</a></li>
+                                <li class="menu-item"><a href="team">Sobre Nosotros</a></li>
                             </ul>
                         </li>
-                        <li class="icon-17 menu-item">
-                            <a>Educación</a>
-                            <ul class="sub-menu">
-                                <li class="menu-item"><a href="~/tutores">Buscar tutores</a></li>
-
-                                <li class="menu-item"><a href="~/tutores/listar">Mantenimiento tutores</a></li>
-
-
-                                <li class="menu-item"><a href="~/cursos">Buscar cursos</a></li>
-
-                                <li class="menu-item"><a href="~/cursos/listar">Mantenimiento cursos</a></li>
-                            </ul>
-                        </li>
-                        <li class="icon-21 menu-item">
-                            <a>Bolsa de empleo</a>
-                            <ul class="sub-menu">
-                                <li class="menu-item"><a href="~/BolsaEmpleo">Bolsa de Empleo</a></li>
-                            </ul>
-                        </li>
-                        <li class="icon-2 menu-item-has-children">
+                        @*<li class="icon-2 menu-item-has-children">
                             <a>Proyectos del comité</a>
                             <ul class="sub-menu">
                                 <li class="menu-item"><a href="~/Actividades">Actividad</a></li>
                                 <li class="menu-item"><a href="groups">Grupos</a></li>
                             </ul>
-                        </li>
-
-                        <li class="icon-22 menu-item">
-                            <a href="~/Deportes">Deportes</a>
-                        </li>
+                        </li>*@
                     </ul>
                 </nav>
             </aside>
